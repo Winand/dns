@@ -278,12 +278,13 @@ def parseAnswer(data):
 
 def isIPv4(s):
     "checks if string is ipv4 address, returns address splitted into parts"
-    parts = str(s).split(".")
+    parts = s.split(".")
     if len(parts) == 4:
-        parts_chk = map(lambda x: int(x)
-                        if x.isdigit() and 0 <= int(x) <= 255 else None, parts)
+        parts_chk = list(map(lambda x: x
+                             if x.isdigit() and 0 <= int(x) <= 255
+                             else None, parts))
         if None not in parts_chk:
-            return [str(i) for i in parts_chk]
+            return parts_chk
 
 
 print("====== WINAND DNS QUERY PROGRAM ======")
